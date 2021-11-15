@@ -1,0 +1,19 @@
+{
+  "name": "ready",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "g": "^2.0.1",
+    "npm": "^8.1.3",
+    "yarn": "^1.22.17"
+  },
+  "scripts": {
+    "start:dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

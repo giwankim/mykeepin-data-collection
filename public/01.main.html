@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<!-- 부트스트랩 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+	<title>국산김치 자율표시 등록시스템</title>
+
+	<link href="css/master.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 모달 띄우기
+			$("#sendMessage").click(function (e) {
+				e.preventDefault();
+				$('#sendMessageModal').modal('show');
+			})
+		});
+	</script>
+</HEAD>
+
+<BODY>
+	<div class="wrapper">
+		<div class="main_wrap">
+			<div class="main_img">
+
+			</div>
+			<div class="main_con">
+				<div class="con">
+					<h3><strong>안녕하세요!</strong></h3>
+					<p>국내에서 제조한 김치를 사용하는 식당이나 김치제조업체가 자율적으로 정보를 등록하는 시스템입니다.</p>
+					<ul>
+						<li><a href="/02.signup.html"><span class="ico01">식당 등록</span></a></li>
+						<li class="orange"><a href="/03.manufacture01.html"><span class="ico02">김치제조사</span></a></li>
+					</ul>
+					
+					<div class="con_footer">
+						<p>정보가 변경되셨나요?</p><a id="sendMessage">변경사항 등록</a>
+					</div>
+				</div>
+
+				<!--  쪽지보내기 모달 -->
+				<div class="modal fade" id="sendMessageModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true" style="display:none;">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content" style="text-align: left;">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">쪽지 보내기</h5>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="recipient-name" class="col-form-label">이름</label>
+										<input type="text" class="form-control" id="recipient-name"
+											placeholder="이름을 입력해주세요">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name" class="col-form-label">연락처</label>
+										<input type="text" class="form-control" id="recipient-name"
+											placeholder="번호를 입력해주세요">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="col-form-label">내용</label>
+										<textarea class="form-control" id="message-text"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-warning">전송</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Footer Page -->
+			<footer class="main_footer">
+				<ul class="f_menu">
+					<li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
+					<li><a href="06.membership.html" target="_blank">회원약관</a></li>
+				</ul>
+				<ul class="f_add">
+					<li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
+					<li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672</li>
+					<li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
+				</ul>
+			</footer>
+			<!-- End of Footer -->
+		</div>
+	</div>
+	</div>
+</BODY>
+</HTML>

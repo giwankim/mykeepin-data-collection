@@ -1,0 +1,37 @@
+/* default */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,a,a:hover,input,select,p,th,td,textarea,input 
+{font-family:'Noto Sans Kr', sans-serif; font-size:18px; font-weight:300; color:#888; letter-spacing:-0.025em; line-height:1.5;}
+body{ overflow-y: auto;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button {margin:0;padding:0;}
+a{text-decoration:none; cursor:pointer;}
+a:hover{text-decoration:none;}
+img{border:0;margin:0;padding:0;}
+input,select{outline-style:none;}
+ul,li, ol,li{list-style:none; border:0;}
+th,td,textarea,input {}
+input {text-indent:5px;}
+p,div,span,li,dd {word-wrap:break-word;word-break:keep-all;}
+
+/*아이폰에서 인풋박스 자동 변경 해제*/
+input[type=text],input[type=password],input[type=number] {
+   -webkit-appearance: none;
+   -webkit-border-radius: 0;
+}
+
+
+img { -ms-interpolation-mode: bicubic; } 
+
+table {
+	border-spacing:0;
+	border-collapse:collapse;
+}
+table caption{
+	position:absolute;
+	visibility:hidden;
+	font-size:0;
+}
+
+
+@media screen and (max-width:767px){
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,a,a:hover,input,select,p,th,td,textarea,input {font-size:3.8vw;}
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<title>국산김치 자율표시 등록시스템</title>
+
+	<link href="css/master.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
+	<!-- 부트스트랩 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		temp = location.href.split("?");
+		data = temp[1].split("/");
+
+		name = decodeURI(data[0]);
+		phone = decodeURI(data[1]);
+		type = decodeURI(data[2]);
+		postcode = decodeURI(data[3]);
+		address = decodeURI(data[4]);
+		extraAddress = decodeURI(data[5]);
+		area = decodeURI(data[6]);
+		
+		function next(){
+			var made = document.getElementById("radios-01").value;
+			var used = document.getElementById("used").value;
+			var madeby = document.getElementById("madeby").value;
+
+			if(used==""){
+				alert("한달 평균 김치 사용량을 적어주세요")
+				return;
+			}
+
+			if(madeby==""){
+				alert("김치 제조사명을 적어주세요")
+				return;
+			}
+			
+			location.href = "04.Submit01.html?" +name+"/"+phone+"/"+type+"/"+postcode+"/"+address+"/"+extraAddress+"/"+ area +"/" + made + "/" + used + "/" + madeby;
+		}
+	</script>
+
+</HEAD>
+
+<BODY>
+	<div class="wrapper">
+		<div class="sub_wrap">
+			<div class="sub_img">
+				<img src="./asset/mobile.jpeg" alt="main" width="100%" height="100%"></img>
+				<div>
+					<div class="num"><strong>2</strong><span>2</span></div>
+					<h2>김치 정보를 <br />등록해주세요.</h2>
+				</div>
+			</div>
+			<div class="sub_con">
+				<div class="con scon01">
+					<div class="con_form">
+						<div>
+							<h3>김치 구매여부</h3>
+							<div class="con_form_radio">
+								<ul>
+									<li><label><input type="radio" checked="checked"
+												name="radios-01" value="자가제조" id="radios-01" /><span>자가제조</span></label></li>
+									<li><label><input type="radio" value="구매사용" name="radios-01" id="radios-01"/><span>구매사용</span></label></li>
+								</ul>
+							</div>
+						</div>
+					
+						<div>
+							<h3>한달 평균 김치 사용량</h3>
+							<div class="con_form_input con_form_input02">
+								<input type="text" id="used" placeholder="숫자만 입력하세요" /><span>kg</span>
+							</div>
+						</div>
+
+						<div>
+							<h3>김치제조사명</h3>
+							<div class="con_form_input">
+								<input type="text" id="madeby" placeholder="업체명을 입력하세요" />
+							</div>
+						</div>
+
+						<a class="con_form_bt" onclick="next();">다음</a>
+						<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
+					</div>
+				</div>
+
+				<!-- Footer Page -->
+				<footer class="main_footer sub_footer">
+					<ul class="f_menu">
+						<li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
+						<li><a href="06.membership.html" target="_blank">회원약관</a></li>
+					</ul>
+					<ul class="f_add">
+						<li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
+						<li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672 </li>
+						<li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
+					</ul>
+				</footer>
+				<!-- End of Footer -->
+			</div>
+		</div>
+	</div>
+
+</BODY>
+</HTML>
