@@ -1,0 +1,36 @@
+[
+  {
+    "vp": "UserPresentation",
+    "vcs": [
+      {
+        "did": "did:meta:testnet:00000000000000000000000000000000000000000000000000000000000003b1",
+        "vc": "EmailCredential",
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "did": "did:meta:testnet:00000000000000000000000000000000000000000000000000000000000003b1",
+        "vc": "NameCredential",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "did": "did:meta:testnet:00000000000000000000000000000000000000000000000000000000000003b1",
+        "vc": "MobileNumberCredential",
+        "name": "mobileNumber",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "vp": "PhonePresentation",
+    "vcs": [
+      {
+        "did": "did:meta:testnet:00000000000000000000000000000000000000000000000000000000000003b1",
+        "vc": "MobileNumberCredential",
+        "name": "mobileNumber",
+        "type": "string"
+      }
+    ]
+  }
+]

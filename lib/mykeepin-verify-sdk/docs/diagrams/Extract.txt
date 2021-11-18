@@ -1,0 +1,27 @@
+title Extract
+
+participant Auth
+participant SP
+participant Resolver
+participant AA
+
+SP->Auth: 인증 결과 확인 요청
+Auth-->SP: return(did, signature, vp)
+SP->SP: RSA private key이용해서 decrypt
+group Verify vp
+SP->Resolver: didDcomument 요청 (did)
+Resolver-->SP: didDocument 반환
+SP->SP: didDocument에서 pubkey 추출
+SP->SP: pubkey로 jwk 생성
+SP->SP: jwk로 vp signature 검증 후 vc 추출
+end
+
+loop vc마다
+group Verify vc
+    SP->Resolver: didDocument 요청 (aa의 did)
+	Resolver-->SP: didDocument 반환
+    SP->SP: didDocument에서 pubkey 추출
+	SP->SP: pubkey로 jwk 생성
+	SP->SP: jwk로 vc signature 검증
+end
+end

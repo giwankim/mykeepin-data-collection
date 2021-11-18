@@ -1,0 +1,12 @@
+{
+  "name": "did-resolver-demo",
+  "version": "0.0.0",
+  "description": "DID Resolver module Demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "did-resolver": "file:.."
+  }
+}

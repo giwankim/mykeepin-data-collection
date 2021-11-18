@@ -1,0 +1,46 @@
+{
+  "name": "mykeepin-verify-sdk",
+  "version": "1.3.0",
+  "description": "Metadium VP & VC verifier",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "test:dev": "DEBUG=mykeepin-verify-sdk* mocha --timeout 5000",
+    "start": "node ./example/example.js",
+    "start:dev": "DEBUG=mykeepin-verify-sdk* node ./example/example.js"
+  },
+  "keywords": [
+    "vp",
+    "vc",
+    "decode",
+    "verify"
+  ],
+  "author": "omnipede",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cryptico": "^1.0.2",
+    "crypto": "^1.0.1",
+    "debug": "^4.1.1",
+    "did-resolver": "file:../did-resolver",
+    "ec-key": "0.0.4",
+    "ethereumjs-abi": "^0.6.8",
+    "ethereumjs-util": "^6.2.0",
+    "jose": "^1.24.0",
+    "keypair": "^1.0.1",
+    "node": "10.18.1",
+    "node-jose": "^1.1.3",
+    "rsa-pem-to-jwk": "^1.1.3",
+    "sha3": "^2.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "mocha": "^7.1.1",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  }
+}

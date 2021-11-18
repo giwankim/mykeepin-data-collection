@@ -1,0 +1,14 @@
+title Verify signature
+
+participant Auth
+participant SP
+participant Resolver
+
+SP->Auth: 인증 결과 확인 요청
+Auth-->SP: return(did, signature, vp)
+
+SP->SP: serviceId, state, code, type, dataHash 를 이용해서 nonce 생성
+SP->SP: ecrecover 해서 signature로부터 address 추출
+SP->Resolver: did의 didDocument 요청
+Resolver-->SP: didDocument 반환
+SP->SP: didDocument 내부에 address가 있는지 확인. 있으면 검증 성공, 없으면 검증 실패
