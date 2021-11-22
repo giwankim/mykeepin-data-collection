@@ -1,3 +1,4 @@
+configs/*.js
 .DS_Store
 envs/*
 
