@@ -9,6 +9,9 @@ const mainnet = {
   type: 1,
   auth_request_url: 'https://auth.mykeepin.com/didauth/v1/authorize/view',
   verify_auth_info_url: 'https://auth.mykeepin.com/didauth/v1/verify',
+  // mongo_uri: 'mongodb://localhost/auth',
+  mongo_uri:
+    'mongodb+srv://dbUser:DnzkpU5MwqhriBOH@kimchiprod.2jhth.mongodb.net/mykeepin-kimchi-demo?retryWrites=true&w=majority',
 };
 
 module.exports = mainnet;
