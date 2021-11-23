@@ -1,5 +1,7 @@
 .DS_Store
-envs/*
+configs/index.js
+configs/info.json
+configs/privateKeyJwks.js
 
 # Logs
 logs

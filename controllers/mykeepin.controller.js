@@ -36,9 +36,9 @@ const redirect1 = async (req, res, next) => {
       },
     });
     const { did, vp, signature } = response.data.data;
-    const user = new User({ did, vp, signature });
-    await user.save();
-    req.session.userId = user._id;
+    // const user = new User({ did, vp, signature });
+    // await user.save();
+    // req.session.userId = user._id;
     return res.sendFile(path.join(__dirname, '..', 'public', '01.main.html'));
   } catch (error) {
     next(error);

@@ -10,20 +10,20 @@ const auth = require('./middleware/auth.middleware');
 const app = express();
 
 // db init
-mongoose.connect(config.mongo_uri);
+// mongoose.connect(config.mongo_uri);
 
 // middleware
-app.use(
-  sessions({
-    cookieName: 'session',
-    secret: 'dfsgjhfdkgdkf324',
-    duration: 30 * 60 * 1000, // 30 minutes
-    cookie: {
-      httpOnly: true,
-      ephemeral: true,
-    },
-  }),
-);
+// app.use(
+//   sessions({
+//     cookieName: 'session',
+//     secret: 'dfsgjhfdkgdkf324',
+//     duration: 30 * 60 * 1000, // 30 minutes
+//     cookie: {
+//       httpOnly: true,
+//       ephemeral: true,
+//     },
+//   }),
+// );
 // app.use(auth.loginRequired, express.static('public'));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -39,7 +39,6 @@ app.use((req, res, next) => {
 });
 app.use((err, req, res, next) => {
   return res.sendFile(path.join(__dirname, 'public', 'notfound.html'));
-  // return res.status(500).send({ error: err });
 });
 
 app.listen(3000);
