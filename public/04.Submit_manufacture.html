@@ -10,13 +10,13 @@
 <title>국산김치 자율표시 등록시스템</title>
 
 <link href="css/master.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-
 
 <script type="text/javascript">
+	let body;
 	window.onload = function(){
 		temp = location.href.split("?");
 		data = temp[1].split("/");
+
 		name = decodeURI(data[0]);
 		phone = decodeURI(data[1]);
 		postcode = decodeURI(data[2]);
@@ -25,15 +25,24 @@
 		capacityPerDay = decodeURI(data[5]);
 		Certification = decodeURI(data[6]);
 
-		let body = {name,phone,postcode, address, extraAddress, capacityPerDay, Certification}
+		body = {
+			name,
+			phone,
+			postal_code: postcode,
+			address,
+			address_detail: extraAddress,
+			daily_production_amount: Number(capacityPerDay),
+			certified_traditional_food: Boolean(Certification),
+			certified_all_korean: false,
+		};
 		
-		if(Certification=="true"){
-			Certification="인증";
-		}else{
-			Certification="미인증";
+		if(Certification === "true"){
+			Certification = "인증";
+		} else {
+			Certification = "미인증";
 		}
 
-		var arr=[phone,name,address+extraAddress,capacityPerDay,Certification];
+		var arr = [phone, name, address + " " + extraAddress, capacityPerDay, Certification];
 
 		var sections = document.querySelectorAll("p");
 
@@ -43,8 +52,21 @@
 		}
  };
 
- function click(){
-		// post
+	function button_click() {		
+		fetch("http://3.38.89.216:3000/manufacturers", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		})
+			.then(response => response.json())
+			.then(_data => {
+				window.location.href = "/05.Submit02.html"
+			})
+			.catch(err => {
+				res.status(400).send({error: true, message: err});
+			})
 	}
 
 </script>
@@ -54,7 +76,7 @@
 <div class="wrapper">
 	<div class="sub_wrap">
 		<div class="sub_img">
-			<img src="./asset/mobile.png" alt="main" width="100%" height="50%"></img>
+			<img src="/asset/mobile.png" alt="main" width="100%" height="50%"></img>
 			<div>
 				<div class="num"><strong>2</strong><span>2</span></div>
 				<h2>입력하신 내용을 <br/>확인해주세요.</h2>
@@ -91,8 +113,10 @@
 						<label for="check" class="form-check-label">
 						  <a href="">약관</a>에 동의합니다.</label>
 					</div>
-					<a href="/05.Submit02.html" class="con_form_bt" onclick="click()">제출</a>
+
+					<a href="javascript:void(0);" class="con_form_bt" onclick="button_click();">제출</a>
 					<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
+
 				</div>
 			</div>
 

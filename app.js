@@ -27,7 +27,7 @@ const app = express();
 // app.use(auth.loginRequired, express.static('public'));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
-app.use(auth.loadUserFromSession);
+// app.use(auth.loadUserFromSession);
 
 // routes
 app.use('/', indexRoutes);

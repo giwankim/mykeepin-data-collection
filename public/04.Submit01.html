@@ -10,12 +10,10 @@
 <title>국산김치 자율표시 등록시스템</title>
 
 <link href="css/master.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 
-<script defer type="text/javascript">
+<script type="text/javascript">
 	temp = location.href.split("?");
 	data = temp[1].split("/");
-	console.log(data);
 	name = decodeURI(data[0]);
 	phone = decodeURI(data[1]);
 	type = decodeURI(data[2]);
@@ -27,8 +25,37 @@
 	used = decodeURI(data[8]);
 	madeby = decodeURI(data[9]);
 
+	let type_of_kimchi;
+	if(made === "직접담근김치") {
+		type_of_kimchi = "SELF_MADE";
+	} else {
+		type_of_kimchi = "PURCHASED";
+	}
+
+	let cuisine;
+	if (type === "한식") {
+		cuisine = "KOREAN";
+	} else if (type === "중식") {
+		cuisine = "CHINESE";
+	} else if (type === "일식") {
+		cuisine = "JAPANESE";
+	} else if (type === "분식") {
+		cuisine = "SNACKBAR";
+	} else {
+		cuisine = "OTHER";
+	}
+
 	let body = {
-		name, phone, type, postcode, address, extraAddress,area, made, used, madeby
+		name,
+		phone,
+		cuisine,
+		type_of_kimchi,
+		"postal_code": postcode,
+		address,
+		"address_detail": extraAddress,
+		"area": Number(area),
+		"consumption_amount": Number(used),
+		"manufacturer": madeby
 	}
 
 	window.onload = function(){
@@ -41,8 +68,21 @@
 		document.getElementById("address").innerHTML = address + extraAddress;
 	}
 
-	function click(){
-		// post
+	function button_click(){
+		fetch("http://3.38.89.216:3000/restaurants", {
+			method:"POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body)
+		})
+			.then(response => response.json())
+			.then(_data => {
+				window.location.href = "/05.Submit02.html";
+			})
+			.catch(err => {
+				res.status(400).send({error: true, message: err});
+			});
 	}
 
 </script>
@@ -94,7 +134,8 @@
 						<label for="check" class="form-check-label">
 						<a href="06.membership.html">약관</a>에 동의합니다.</label>
 					</div>
-					<a href="/05.Submit02.html" class="con_form_bt" onclick="click()">제출</a>
+
+					<a href="javascript:void(0);" class="con_form_bt" onclick="button_click();">제출</a>
 					<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
 				</div>
 			</div>
