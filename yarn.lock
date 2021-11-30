@@ -15,9 +15,9 @@
     defer-to-connect "^1.0.1"
 
 "@types/node@*":
-  version "16.11.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.9.tgz#879be3ad7af29f4c1a5c433421bf99fab7047185"
-  integrity sha512-MKmdASMf3LtPzwLyRrFjtFFZ48cMf8jmX5VRYrDQiJa8Ybu5VAmkqBWqKU8fdCwD8ysw4mQ9nrEHvzg6gunR7A==
+  version "16.11.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.10.tgz#2e3ad0a680d96367103d3e670d41c2fed3da61ae"
+  integrity sha512-3aRnHa1KlOEEhJ6+CvyHKK5vE9BcLGjtUpwvqYLRvYNQKMfabu3BwfJaA/SLW8dxe28LsNDjtHwePTuzn3gmOA==
 
 "@types/webidl-conversions@*":
   version "6.1.1"
@@ -174,9 +174,9 @@ browserify-zlib@^0.2.0:
     pako "~1.0.5"
 
 bson@^4.2.2, bson@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-4.5.4.tgz#5f74f1e11f743ea8aec30b5e24bfddae82846873"
-  integrity sha512-wIt0bPACnx8Ju9r6IsS2wVtGDHBr9Dxb+U29A1YED2pu8XOhS8aKjOnLZ8sxyXkPwanoK7iWWVhS1+coxde6xA==
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-4.6.0.tgz#15c3b39ba3940c3d915a0c44d51459f4b4fbf1b2"
+  integrity sha512-8jw1NU1hglS+Da1jDOUYuNcBJ4cNHCFIqzlwoFNnsTOg2R/ox0aTYcTiBN4dzRa9q7Cvy6XErh3L8ReTEb9AQQ==
   dependencies:
     buffer "^5.6.0"
 

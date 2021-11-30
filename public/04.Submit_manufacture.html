@@ -52,8 +52,9 @@
 		}
  };
 
-	function button_click() {		
-		fetch("http://3.38.89.216:3000/manufacturers", {
+	function button_click() {
+		var url = "/05.Submit02.html?" + name + "/" + made + "/" + madeby + "/" + address + extraAddress
+		fetch("http://13.124.69.5:3000/manufacturers", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -62,7 +63,7 @@
 		})
 			.then(response => response.json())
 			.then(_data => {
-				window.location.href = "/05.Submit02.html"
+				window.location.href = url;
 			})
 			.catch(err => {
 				res.status(400).send({error: true, message: err});

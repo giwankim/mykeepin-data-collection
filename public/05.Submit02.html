@@ -10,10 +10,28 @@
 <title>국산김치 자율표시 등록시스템</title>
 
 <link href="css/master.css" rel="stylesheet" type="text/css" />
-<!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> -->
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script type="text/javascript">
+	temp = location.href.split("?");
+	data = temp[1].split("/");
+	name = decodeURI(data[0]);
+	made = decodeURI(data[1]);
+	madeby = decodeURI(data[2]);
+	address = decodeURI(data[3]);
 
- </HEAD>
+	window.onload = function(){
+		var url = "http://54.180.208.220:3000/07.qrpage.html?" + data[0] + "/" + data[1] + "/" + data[2] + "/" + data[3]
+		new QRCode(document.getElementById("qrcode"), {
+			text:url,
+			width:177,
+			height:177,
+			colorDark: "#000000",
+			colorLight: "#ffffff",
+			correctLevel: QRCode.CorrectLevel.H
+,			});
+	}
+</script>
+</HEAD>
 
 <BODY>
 <div class="wrapper">
@@ -28,6 +46,7 @@
 		<div class="sub_con">
 			<div class="con">
 				<p class="submit02_txt">성공적으로 <br/><strong>등록완료</strong> 되었습니다!</p>
+				<div id="qrcode"></div>
 			</div>
 
 			<!-- Footer Page -->
