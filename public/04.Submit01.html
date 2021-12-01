@@ -28,11 +28,13 @@
 		madeby = decodeURI(data[9]);
 
 		let type_of_kimchi;
-		if (made === "직접담근김치") {
+		if (made === "직접 담근 김치") {
 			type_of_kimchi = "SELF_MADE";
 		} else {
 			type_of_kimchi = "PURCHASED";
 		}
+
+		console.log(type_of_kimchi)
 
 		let cuisine;
 		if (type === "한식") {
