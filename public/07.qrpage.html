@@ -11,22 +11,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
     <link href="css/master.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="css/fonts/fontAwesome/font-awesome.min.css">
-    <script type="text/javascript">
-        temp = location.href.split("?");
-            data = temp[1].split("/");
-            name = decodeURI(data[0]);
-            made = decodeURI(data[1]);
-            madeby = decodeURI(data[2]);
-            address = decodeURI(data[3]);
     
-        window.onload = function(){
-          document.getElementById("name").value = name;
-          document.getElementById("madeby").value = madeby;
-        }
-      </script>
+    
 </head>
 
 <div class="wrapper">
@@ -44,11 +34,13 @@
                         style="width:250px; height:250px; margin-bottom: 20px;">
                     <div style="margin-bottom: 20px;">
                         <h2 style="margin-bottom: 10px;"><i class="fa fa-home text-muted" aria-hidden="true"></i>
-                            <strong>음식점명</strong></h2>
+                            <strong>음식점명</strong>
+                        </h2>
                         <input class="form-control shopDesc" id="name" readonly style="width:300px; margin:0 auto;" />
                     </div>
                     <h2 style="margin-bottom: 10px;"><i class="fa fa-building-o text-muted" aria-hidden="true"></i>
-                        <strong>김치 제조업체명</strong></h2>
+                        <strong>김치 제조업체명</strong>
+                    </h2>
                     <input class="form-control shopDesc" id="madeby" style="width:300px; margin:0 auto;" readonly />
                 </div>
             </div>
@@ -59,8 +51,7 @@
             <div class="row" style="margin:0;">
                 <a id="mapLocation"></a>
                 <h2 style="text-align: center;"><i class="fa fa-map-marker text-muted" aria-hidden="true"></i> 오시는 길</h2>
-                <div style="width: 100%;height: 50vh; background: skyblue; margin:0 auto;">여기가 지도입니다
-                    API Key를 발급받아서 넣어야할 것 같습니다. 파이팅입니다!!</div>
+                <div id="map" style="width:80%;height:500px;margin:0 auto"></div>
             </div>
 
             <!-- Footer Page -->
@@ -70,8 +61,10 @@
                     <li><a href="06.membership.html" target="_blank">회원약관</a></li>
                 </ul>
                 <ul class="f_add">
-                    <li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
-                    <li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672 </li>
+                    <li>서울특별시 구로구 디지털로 33번길 12 201-1호 <a href="https://futuresense.dev/">퓨처센스</a></li>
+                    <li>컨소시움 소개 <a href="https://www.wikim.re.kr/index.es?sid=a1">세계김치연구소</a> <a
+                            href="http://lcdns.co.kr/">엘씨디엔에스</a></li>
+                    <li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672</li>
                     <li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
                 </ul>
             </footer>
@@ -79,6 +72,61 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b92b00fa0c0bb198ce2aeae167dcbe1&libraries=services"></script>
+    <script type="text/javascript">
+
+        temp = location.href.split("?");
+        data = temp[1].split("/");
+        name = decodeURI(data[0]);
+        made = decodeURI(data[1]);
+        madeby = decodeURI(data[2]);
+        address = decodeURI(data[3]);
+
+        window.onload = function () {
+            document.getElementById("name").value = name;
+            document.getElementById("madeby").value = madeby;
+        }
+
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        // 지도를 생성합니다    
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소를 db에서 가져옵니다. 
+        var _address = address;
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(_address, function (result, status) {
+
+            // 정상적으로 검색이 완료됐으면 
+            if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var content = '<div style="width:150px;text-align:center;padding:6px 0;">' + name + "</div>";
+                var infowindow = new kakao.maps.InfoWindow({
+                    content,
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            }
+        });
+    </script>
 </BODY>
 
 </html>

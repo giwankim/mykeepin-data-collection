@@ -1,152 +1,180 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0">
-<meta name="format-detection" content="telephone=no" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
-<title>국산김치 자율표시 등록시스템</title>
+    <title>국산김치 자율표시 등록시스템</title>
 
-<link href="css/master.css" rel="stylesheet" type="text/css" />
+    <link href="css/master.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-	let body;
-	window.onload = function(){
-		temp = location.href.split("?");
-		data = temp[1].split("/");
+    <script type="text/javascript">
+      let body;
+      window.onload = function () {
+        temp = location.href.split('?');
+        data = temp[1].split('/');
 
-		name = decodeURI(data[0]);
-		phone = decodeURI(data[1]);
-		postcode = decodeURI(data[2]);
-		address = decodeURI(data[3]);
-		extraAddress = decodeURI(data[4]);
-		capacityPerDay = decodeURI(data[5]);
-		Certification = decodeURI(data[6]);
+        name = decodeURI(data[0]);
+        phone = decodeURI(data[1]);
+        postcode = decodeURI(data[2]);
+        address = decodeURI(data[3]);
+        extraAddress = decodeURI(data[4]);
+        capacityPerDay = decodeURI(data[5]);
+        Certification = decodeURI(data[6]);
 
-		body = {
-			name,
-			phone,
-			postal_code: postcode,
-			address,
-			address_detail: extraAddress,
-			daily_production_amount: Number(capacityPerDay),
-			certified_traditional_food: Boolean(Certification),
-			certified_all_korean: false,
-		};
-		
-		if(Certification === "true"){
-			Certification = "인증";
-		} else {
-			Certification = "미인증";
-		}
+        body = {
+          name,
+          phone,
+          postal_code: postcode,
+          address,
+          address_detail: extraAddress,
+          daily_production_amount: Number(capacityPerDay),
+          certified_traditional_food: Boolean(Certification),
+          certified_all_korean: false,
+        };
 
-		var arr = [phone, name, address + " " + extraAddress, capacityPerDay, Certification];
+        if (Certification === 'true') {
+          Certification = '인증';
+        } else {
+          Certification = '미인증';
+        }
 
-		var sections = document.querySelectorAll("p");
+        var arr = [
+          phone,
+          name,
+          address + ' ' + extraAddress,
+          capacityPerDay,
+          Certification,
+        ];
 
-		for (var i = 0; i < sections.length; i++) {
-			var item = sections.item(i);
-			item.innerText = arr[i];
-		}
- };
+        var sections = document.querySelectorAll('p');
 
-	function button_click() {
-		var check = document.getElementById("check").checked;
-    if(!check){
-      alert("약관에 동의해 주세요")
-      return;
-    }
+        for (var i = 0; i < sections.length; i++) {
+          var item = sections.item(i);
+          item.innerText = arr[i];
+        }
+      };
 
-		fetch("https://api.woorikimchi.com/manufacturers", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(body),
-		})
-			.then(response => response.json())
-			.then(_data => {
-				window.location.href = "/05.Submit02_manufacture.html"
-			})
-			.catch(err => {
-				window.location.href = '/notfound.html'
-			})
-	}
+      function button_click() {
+        var check = document.getElementById('check').checked;
+        if (!check) {
+          alert('약관에 동의해 주세요');
+          return;
+        }
 
-</script>
- </HEAD>
+        fetch('/manufacturers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+          .then((response) => response.json())
+          .then((_data) => {
+            window.location.href = '/05.Submit02_manufacture.html';
+          })
+          .catch((err) => {
+            window.location.href = '/notfound.html';
+          });
+      }
+    </script>
+  </head>
 
-<BODY>
-<div class="wrapper">
-	<div class="sub_wrap">
-		<div class="sub_img">
-			<div>
-				<h2>입력하신 내용을 <br/>확인해주세요.</h2>
-			</div>
-		</div>
-		<div class="sub_con">
-			<div class="con scon02">
-				<div class="con_form02">
-					<ul>
-						<li>
-							<h3>전화번호</h3>
-							<p></p>
-						</li>
-						<li>
-							<h3>업체명</h3>
-							<p></p>
-						</li>
+  <body>
+    <div class="wrapper">
+      <div class="sub_wrap">
+        <div class="sub_img">
+          <div>
+            <h2>입력하신 내용을 <br />확인해주세요.</h2>
+          </div>
+        </div>
+        <div class="sub_con">
+          <div class="con scon02">
+            <div class="con_form02">
+              <ul>
+                <li>
+                  <h3>전화번호</h3>
+                  <p></p>
+                </li>
+                <li>
+                  <h3>업체명</h3>
+                  <p></p>
+                </li>
 
-						<li>
-							<h3>업체주소</h3>
-							<p></p>
-						</li>
-						<li>
-							<h3>일일 생산량</h3>
-							<p><span></span>kg /일</p>
-						</li>
-						<li>
-							<h3>전통식품인증 여부</h3>
-							<p></p>
-						</li>
-					</ul>
-					<div class="form-check mb-3" style="margin-top: 10px;">
-						<input type="checkbox" class="form-check-input" id="check">
-						<label for="check" class="form-check-label">
-						  <a href="">약관</a>에 동의합니다.</label>
-					</div>
+                <li>
+                  <h3>업체주소</h3>
+                  <p></p>
+                </li>
+                <li>
+                  <h3>일일 생산량</h3>
+                  <p><span></span>kg /일</p>
+                </li>
+                <li>
+                  <h3>전통식품인증 여부</h3>
+                  <p></p>
+                </li>
+              </ul>
+              <div class="form-check mb-3" style="margin-top: 10px">
+                <input type="checkbox" class="form-check-input" id="check" />
+                <label for="check" class="form-check-label">
+                  <a href="">약관</a>에 동의합니다.</label
+                >
+              </div>
 
-					<a href="javascript:void(0);" class="con_form_bt" onclick="button_click();">제출</a>
-					<a href="javascript:window.history.back();" class="con_form_bt" style="background-color:rgba(92, 89, 92, 0.8) !important; margin-top:20px !important;">뒤로가기</a>
+              <a
+                href="javascript:void(0);"
+                class="con_form_bt"
+                onclick="button_click();"
+                >제출</a
+              >
+              <a
+                href="javascript:window.history.back();"
+                class="con_form_bt"
+                style="
+                  background-color: rgba(92, 89, 92, 0.8) !important;
+                  margin-top: 20px !important;
+                "
+                >뒤로가기</a
+              >
+            </div>
+          </div>
 
-				</div>
-			</div>
-
-			<!-- Footer Page -->
-			<footer class="main_footer sub_footer">
-				<ul class="f_menu">
-					<li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
-					<li><a href="06.membership.html" target="_blank">회원약관</a></li>
-				</ul>
-				<ul class="f_add">
-					<li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
-					<li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672 </li>
-					<li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
-				</ul>
-			</footer>
-			<!-- End of Footer -->
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-</BODY>
-</HTML>
+          <!-- Footer Page -->
+          <footer class="main_footer sub_footer">
+            <ul class="f_menu">
+              <li>
+                <a href="https://futuresense.dev/" target="_blank">회사소개</a>
+              </li>
+              <li><a href="06.membership.html" target="_blank">회원약관</a></li>
+            </ul>
+            <ul class="f_add">
+              <li>
+                서울특별시 구로구 디지털로 33번길 12 201-1호
+                <a href="https://futuresense.dev/">퓨처센스</a>
+              </li>
+              <li>
+                컨소시움 소개
+                <a href="https://www.wikim.re.kr/index.es?sid=a1"
+                  >세계김치연구소</a
+                >
+                <a href="http://lcdns.co.kr/">엘씨디엔에스</a>
+              </li>
+              <li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672</li>
+              <li>
+                Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.
+              </li>
+            </ul>
+          </footer>
+          <!-- End of Footer -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
