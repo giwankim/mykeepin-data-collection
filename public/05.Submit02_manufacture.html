@@ -19,25 +19,6 @@
 		made = decodeURI(data[1]);
 		madeby = decodeURI(data[2]);
 		address = decodeURI(data[3]);
-
-		window.onload = function(){
-			var url = "https://www.woorikimchi.com/07.qrpage.html?" + data[0] + "/" + data[1] + "/" + data[2] + "/" + data[3]
-			
-			const qrCode = new QRCode(document.getElementById("qrcode"), {
-				text:url,
-				colorDark: "#000000",
-				colorLight: "#ffffff",
-				correctLevel: QRCode.CorrectLevel.H
-,			});
-			
-			const dataURL = document.getElementById('qrcode').children[0].toDataURL()
-			const download = document.getElementById('qrcode_download').href = dataURL;
-		}
-	
-		function button_click(){
-			var url = "/07.qrpage.html?" + data[0] + "/" + data[1] + "/" + data[2] + "/" + data[3];
-			window.location.href=url;
-		}
 	</script>
 
 </HEAD>
@@ -53,8 +34,6 @@
 			<div class="sub_con">
 				<div class="con">
 					<p class="submit02_txt">성공적으로 <br /><strong>등록완료</strong> 되었습니다!
-						<div id="qrcode"></div>
-						<a dwonload href="" download="image.png" target="_blank" id="qrcode_download" class="con_form_bt" style="width:200px; height:50px; margin:0 auto;">다운로드</a>
 					</p>
 				</div>
 				

@@ -2,8 +2,6 @@ const path = require('path');
 const { default: axios } = require('axios');
 const { v4: uuid } = require('uuid');
 const config = require('../configs');
-const User = require('../models/user.model');
-const auth = require('../middleware/auth.middleware');
 
 const login = (req, res) => {
   const {
@@ -36,9 +34,6 @@ const redirect1 = async (req, res, next) => {
       },
     });
     const { did, vp, signature } = response.data.data;
-    // const user = new User({ did, vp, signature });
-    // await user.save();
-    // req.session.userId = user._id;
     return res.sendFile(path.join(__dirname, '..', 'public', '01.main.html'));
   } catch (error) {
     next(error);

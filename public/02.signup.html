@@ -22,6 +22,7 @@
 	<!-- 우편번호 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/phoneFomatter.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 			// 모달 띄우기
@@ -36,7 +37,11 @@
 
 		function next() {
 			var name = document.getElementById("restaurant").value;
-			var phone = document.getElementById("phone").value;
+			var phone1 = document.getElementById("phone1").value;
+			var phone2 = document.getElementById("phone2").value;
+			var phone3 = document.getElementById("phone3").value;
+			
+			var phone = phoneFomatter(phone1+phone2+phone3);
 			var type = document.getElementById("type").value;
 			var postcode = document.getElementById("postcode").value;
 			var address = document.getElementById("address").value;
@@ -48,17 +53,17 @@
 				return;
 			}
 
-			if(phone==""){
+			if (phone == "") {
 				alert("전화번호를 입력해주세요");
 				return;
 			}
 
-			if(type==0){
+			if (type == 0) {
 				alert("음식점 종류를 선택해주세요")
 				retur;
 			}
 
-			if(address==""){
+			if (address == "") {
 				alert("주소를 입력해주세요")
 				return;
 			}
@@ -73,7 +78,9 @@
 	<div class="wrapper">
 		<div class="sub_wrap">
 			<div class="sub_img">
-				<img src="./asset/mobile.png" alt="main" width="100%" height="50%"></img>
+				<div>
+					<h2>김치 정보를 <br />등록해주세요.</h2>
+				</div>
 			</div>
 			<form action="02_1.signup.html" method="GET" id="res1_form">
 				<div class="sub_con">
@@ -87,9 +94,13 @@
 							</div>
 
 							<div>
-								<h3>전화번호 <span>지역번호 또는 휴대폰</span></h3>
-								<div class="con_form_input">
-									<input type="text" name="phone" id="phone" placeholder="전화번호를 입력해주세요" />
+								<h3>전화번호 <span>지역 또는 휴대폰</span></h3>
+								<div class="con_form_input con_form_input_tel">
+									<input type="tel" id="phone1" placeholder=""/>
+									<span>-</span>
+									<input type="tel" id="phone2" placeholder="" />
+									<span>-</span>
+									<input type="tel" id="phone3" placeholder="" />
 								</div>
 							</div>
 
@@ -129,7 +140,8 @@
 							</div>
 
 							<a class="con_form_bt" onclick="next();">다음</a>
-							<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
+							<a href="javascript:window.history.back();" class="con_form_bt"
+								style="background-color:rgba(92, 89, 92, 0.8) !important;">뒤로가기</a>
 						</div>
 					</div>
 

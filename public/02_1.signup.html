@@ -11,7 +11,7 @@
 	<title>국산김치 자율표시 등록시스템</title>
 
 	<link href="css/master.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> -->
 
 	<!-- 부트스트랩 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -21,32 +21,42 @@
 
 	<script type="text/javascript">
 
-		function check(value){
+		var made = document.getElementById("made")
+		window.onload = function () {
+
+			name = decodeURI(data[0]);
+			phone = decodeURI(data[1]);
+			type = decodeURI(data[2]);
+			postcode = decodeURI(data[3]);
+			address = decodeURI(data[4]);
+			extraAddress = decodeURI(data[5]);
+			area = decodeURI(data[6]);
+			made = "직접 담근 김치"; 
+
+			var checked = document.getElementById("radios-01");
+			checked.checked = true;
+		}
+
+		function check(value) {
 			var madeby = document.getElementById("madeby")
-			if(value==="직접 담근 김치"){
-				madeby.setAttribute("disabled", true)
-				madeby.value="직접 담근 김치입니다"
+			made = document.getElementById("radios-01")
+			if (value === "직접 담근 김치") {
 				madeby.setAttribute("placeholder", "직접 담근 김치입니다")
-			}else if(value==="구매사용"){
+				madeby.setAttribute("disabled", true)
+				madeby.value = "직접 담근 김치입니다"
+				made = value;
+			} else if (value === "구매사용") {
+				madeby.value = ""
 				madeby.setAttribute("placeholder", "업체명을 입력하세요")
 				madeby.removeAttribute("disabled")
-				madeby.value=""
+				made = value;
 			}
 		}
 
 		temp = location.href.split("?");
 		data = temp[1].split("/");
 
-		name = decodeURI(data[0]);
-		phone = decodeURI(data[1]);
-		type = decodeURI(data[2]);
-		postcode = decodeURI(data[3]);
-		address = decodeURI(data[4]);
-		extraAddress = decodeURI(data[5]);
-		area = decodeURI(data[6]);
-
 		function next() {
-			var made = document.getElementById("radios-01").value;
 			var used = document.getElementById("used").value;
 			var madeby = document.getElementById("madeby").value;
 
@@ -65,9 +75,7 @@
 	<div class="wrapper">
 		<div class="sub_wrap">
 			<div class="sub_img">
-				<img src="./asset/mobile.png" alt="main" width="100%" height="100%"></img>
 				<div>
-					<div class="num"><strong>2</strong><span>2</span></div>
 					<h2>김치 정보를 <br />등록해주세요.</h2>
 				</div>
 			</div>
@@ -79,9 +87,10 @@
 							<div class="con_form_radio">
 								<ul>
 									<li><label><input type="radio" checked="checked" name="radios-01" value="직접 담근 김치"
-												id="radios-01" onclick="check(this.value)"/><span>직접 담근 김치</span></label></li>
-									<li><label><input type="radio" value="구매사용" name="radios-01"
-												id="radios-01" onclick="check(this.value)"/><span>구매사용</span></label></li>
+												id="radios-01" onclick="check(this.value)" /><span>직접 담근
+												김치</span></label></li>
+									<li><label><input type="radio" value="구매사용" name="radios-01" id="radios-01"
+												onclick="check(this.value)" /><span>구매사용</span></label></li>
 								</ul>
 							</div>
 						</div>
@@ -96,12 +105,12 @@
 						<div>
 							<h3>김치제조사명</h3>
 							<div class="con_form_input">
-								<input type="text" id="madeby" placeholder="직접 담근 김치입니다" value="직접 담근 김치입니다" disabled/>
+								<input type="text" id="madeby" placeholder="직접 담근 김치입니다" value="직접 담근 김치입니다" disabled />
 							</div>
 						</div>
 
 						<a class="con_form_bt" onclick="next();">다음</a>
-						<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
+						<a href="javascript:window.history.back();" class="con_form_bt" style="background-color:rgba(92, 89, 92, 0.8) !important;">뒤로가기</a>
 					</div>
 				</div>
 
@@ -121,7 +130,6 @@
 			</div>
 		</div>
 	</div>
-
 </BODY>
 
 </HTML>

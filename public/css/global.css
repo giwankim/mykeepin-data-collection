@@ -12,14 +12,18 @@ th,td,textarea,input {}
 input {text-indent:5px;}
 p,div,span,li,dd {word-wrap:break-word;word-break:keep-all;}
 
-/*¾ÆÀÌÆù¿¡¼­ ÀÎÇ²¹Ú½º ÀÚµ¿ º¯°æ ÇØÁ¦*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç²ï¿½Ú½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 input[type=text],input[type=password],input[type=number] {
    -webkit-appearance: none;
    -webkit-border-radius: 0;
 }
 
 
-img { -ms-interpolation-mode: bicubic; } 
+img { -ms-interpolation-mode: bicubic; }
+
+#qrcode > img{
+	margin: 10px auto;
+}
 
 table {
 	border-spacing:0;

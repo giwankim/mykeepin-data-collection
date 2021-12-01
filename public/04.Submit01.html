@@ -1,163 +1,182 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0">
-<meta name="format-detection" content="telephone=no" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
-<title>국산김치 자율표시 등록시스템</title>
+	<title>국산김치 자율표시 등록시스템</title>
 
-<link href="css/master.css" rel="stylesheet" type="text/css" />
+	<link href="css/master.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-	temp = location.href.split("?");
-	data = temp[1].split("/");
-	name = decodeURI(data[0]);
-	phone = decodeURI(data[1]);
-	type = decodeURI(data[2]);
-	postcode = decodeURI(data[3]);
-	address = decodeURI(data[4]);
-	extraAddress = decodeURI(data[5]);
-	area = decodeURI(data[6]);
-	made = decodeURI(data[7]);
-	used = decodeURI(data[8]);
-	madeby = decodeURI(data[9]);
+	<script type="text/javascript">
+		temp = location.href.split("?");
+		data = temp[1].split("/");
+		name = decodeURI(data[0]);
+		phone = decodeURI(data[1]);
+		type = decodeURI(data[2]);
+		postcode = decodeURI(data[3]);
+		address = decodeURI(data[4]);
+		extraAddress = decodeURI(data[5]);
+		area = decodeURI(data[6]);
+		made = decodeURI(data[7]);
+		used = decodeURI(data[8]);
+		madeby = decodeURI(data[9]);
 
-	let type_of_kimchi;
-	if(made === "직접담근김치") {
-		type_of_kimchi = "SELF_MADE";
-	} else {
-		type_of_kimchi = "PURCHASED";
-	}
+		let type_of_kimchi;
+		if (made === "직접담근김치") {
+			type_of_kimchi = "SELF_MADE";
+		} else {
+			type_of_kimchi = "PURCHASED";
+		}
 
-	let cuisine;
-	if (type === "한식") {
-		cuisine = "KOREAN";
-	} else if (type === "중식") {
-		cuisine = "CHINESE";
-	} else if (type === "일식") {
-		cuisine = "JAPANESE";
-	} else if (type === "분식") {
-		cuisine = "SNACKBAR";
-	} else {
-		cuisine = "OTHER";
-	}
+		let cuisine;
+		if (type === "한식") {
+			cuisine = "KOREAN";
+		} else if (type === "중식") {
+			cuisine = "CHINESE";
+		} else if (type === "일식") {
+			cuisine = "JAPANESE";
+		} else if (type === "분식") {
+			cuisine = "SNACKBAR";
+		} else {
+			cuisine = "OTHER";
+		}
 
-	let body = {
-		name,
-		phone,
-		cuisine,
-		type_of_kimchi,
-		"postal_code": postcode,
-		address,
-		"address_detail": extraAddress,
-		"area": Number(area),
-		"consumption_amount": Number(used),
-		"manufacturer": madeby
-	}
+		let body = {
+			name,
+			phone,
+			cuisine,
+			type_of_kimchi,
+			"postal_code": postcode,
+			address,
+			"address_detail": extraAddress,
+			"area": Number(area),
+			"consumption_amount": Number(used),
+			"manufacturer": madeby
+		}
 
-	window.onload = function(){
-		document.getElementById("name").innerHTML = name;
-		document.getElementById("made").innerHTML = made;
-		document.getElementById("type").innerHTML = type;
-		document.getElementById("used").innerHTML = used;
-		document.getElementById("size").innerHTML = area;
-		document.getElementById("madeby").innerHTML = madeby;
-		document.getElementById("address").innerHTML = address + " " + extraAddress;
-	}
+		window.onload = function () {
+			document.getElementById("name").innerHTML = name;
+			document.getElementById("made").innerHTML = made;
+			document.getElementById("phone").innerHTML = phone;
+			document.getElementById("type").innerHTML = type;
+			document.getElementById("used").innerHTML = used;
+			document.getElementById("size").innerHTML = area;
+			document.getElementById("madeby").innerHTML = madeby;
+			document.getElementById("address").innerHTML = address + extraAddress;
+		}
 
-	function button_click(){
+		function button_click() {
 
-		fetch("http://13.124.69.5:3000/restaurants", {
-			method:"POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(body)
-		})
-			.then(response => response.json())
-			.then(_data => {
-				var url = "/05.Submit02.html?" + name + "/" + made + "/" + madeby + "/" + address + extraAddress
-				window.location.href = url;
+			var check = document.getElementById("check").checked;
+			if(!check){
+				alert("약관에 동의해 주세요")
+				return;
+			}
+
+			fetch("https://api.woorikimchi.com/restaurants", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+
+				},
+				body: JSON.stringify(body)
 			})
-			.catch(err => {
-				res.status(400).send({error: true, message: err});
-			});
-	}
+				.then(response => response.json())
+				.then(_data => {
+					var url = "/05.Submit02.html?" + name + "/" + made + "/" + madeby + "/" + address + extraAddress
+					window.location.href = url;
+				})
+				.catch(err => {
+					window.location.href = '/notfound.html';
+				});
+		}
 
-</script>
+	</script>
 
 </HEAD>
 
 <BODY>
-<div class="wrapper">
-	<div class="sub_wrap">
-		<div class="sub_img">
-			<img src="./asset/mobile.png" alt="main" width="100%" height="50%"></img>
-		</div>
-		<div class="sub_con">
-			<div class="con scon02">
-				<div class="con_form02">
-					<ul>
-						<li>
-							<h3>음식점명</h3>
-							<p id="name"></p>
-						</li>
-						<li>
-							<h3>김치 구매여부</h3>
-							<p id="made"></p>
-						</li>
-
-						<li>
-							<h3>음식점 종류</h3>
-							<p id="type"></p>
-						</li>
-						<li>
-							<h3>한달 평균 김치 사용량</h3>
-							<p id="used"></p>
-						</li>
-						<li>
-							<h3>식당 크기(규모)</h3>
-							<p id="size"></p>
-						</li>
-						<li>
-							<h3>김치제조업체</h3>
-							<p id="madeby"></p>
-						</li>
-						<li>
-							<h3>음식점 주소</h3>
-							<p id="address"></p>
-						</li>
-					</ul>
-					<div class="form-check mb-3" style="margin-top: 10px;">
-						<input type="checkbox" class="form-check-input" id="check">
-						<label for="check" class="form-check-label">
-						<a href="06.membership.html">약관</a>에 동의합니다.</label>
-					</div>
-
-					<a href="javascript:void(0);" class="con_form_bt" onclick="button_click();">제출</a>
-					<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
+	<div class="wrapper">
+		<div class="sub_wrap">
+			<div class="sub_img">
+				<div>
+					<h2>김치 정보를 <br />확인해주세요.</h2>
 				</div>
 			</div>
+			<div class="sub_con">
+				<div class="con scon02">
+					<div class="con_form02">
+						<ul>
+							<li>
+								<h3>음식점명</h3>
+								<p id="name"></p>
+							</li>
 
-			<!-- Footer Page -->
-			<footer class="main_footer sub_footer">
-				<ul class="f_menu">
-					<li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
-					<li><a href="06.membership.html" target="_blank">회원약관</a></li>
-				</ul>
-				<ul class="f_add">
-					<li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
-					<li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672 </li>
-					<li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
-				</ul>
-			</footer>
-			<!-- End of Footer -->
-			
+							<li>
+								<h3>전화번호</h3>
+								<p id="phone"></p>
+							</li>
+
+							<li>
+								<h3>김치 구매여부</h3>
+								<p id="made"></p>
+							</li>
+
+							<li>
+								<h3>음식점 종류</h3>
+								<p id="type"></p>
+							</li>
+							<li>
+								<h3>한달 평균 김치 사용량</h3>
+								<p id="used"></p>
+							</li>
+							<li>
+								<h3>식당 크기(규모)</h3>
+								<p id="size"></p>
+							</li>
+							<li>
+								<h3>김치제조업체</h3>
+								<p id="madeby"></p>
+							</li>
+							<li>
+								<h3>음식점 주소</h3>
+								<p id="address"></p>
+							</li>
+						</ul>
+						<div class="form-check mb-3" style="margin-top: 10px;">
+							<input type="checkbox" class="form-check-input" id="check">
+							<label for="check" class="form-check-label">
+								<a href="06.membership.html"> 약관</a>에 동의합니다.</label>
+						</div>
+
+						<a href="javascript:void(0);" class="con_form_bt" onclick="button_click();">제출</a>
+						<a href="javascript:window.history.back();" class="con_form_bt" style="background-color:rgba(92, 89, 92, 0.8) !important; margin-top:20px !important;">뒤로가기</a>
+					</div>
+				</div>
+
+				<!-- Footer Page -->
+				<footer class="main_footer sub_footer">
+					<ul class="f_menu">
+						<li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
+						<li><a href="06.membership.html" target="_blank">회원약관</a></li>
+					</ul>
+					<ul class="f_add">
+						<li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
+						<li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672 </li>
+						<li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
+					</ul>
+				</footer>
+				<!-- End of Footer -->
+
+			</div>
 		</div>
 	</div>
-</div>
 </BODY>
+
 </HTML>

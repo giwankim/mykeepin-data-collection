@@ -50,7 +50,7 @@
 
 .sub_con {float:right; height:100%;width:calc(100% - 580px); position:relative; display:flex; justify-content:center; align-items:center; flex-wrap:wrap;}
 
-.scon01 {width:500px; padding-bottom:100px; margin-top:50px;}
+.scon01 {width:500px; padding-bottom:100px;}
 .sub_footer {min-width:100%; padding-bottom:50px; position:relative; width:100%; bottom:auto; left:auto; margin:0;}
 .main_footer.sub_footer .f_menu {justify-content:center;}
 .sub_footer.main_footer .f_add li:nth-child(2)::before {display:block;}
@@ -175,7 +175,7 @@
 .con_form02 ul li:nth-child(n + 3) {margin-top:15px;}
 .scon02 .con_form_bt {margin-top:90px;}
 
-.submit02_txt {text-align:center; font-size:35px; color:#333; line-height:1.3; padding-top:65px; font-weight:200; background:url(../images/content/submit02_ico.png) no-repeat center 0;}
+.submit02_txt {text-align:center; font-size:35px; color:#333; line-height:1.3; padding-top:65px; font-weight:200; background:url(../images/content/submit02_ico.png) no-repeat center 0; margin:200px 0;}
 
 .con_form_input_tel {display:flex; align-items:center;}
 .con_form_input_tel input {text-align:center;}
@@ -304,7 +304,7 @@ html, body, .wrapper {height:auto;}
 .con_form_input02 input {width:calc(100% - 6vw);}
 .con_form_input04 span {width:12vw; font-size:3.5vw;}
 
-.con_form_input03 a {height:10vw; font-size:3.8vw; margin-top:1vw; width:23vw; }
+.con_form_input03 aㅋ {height:10vw; font-size:3.8vw; margin-top:1vw; width:23vw; }
 .con_form_input03 input {width:calc(100% - 23vw);}
 .con_form_bt,.con_form_bt:hover {height:14vw; font-size:4.5vw; margin-top:7vw;}
 
@@ -323,8 +323,7 @@ html, body, .wrapper {height:auto;}
 .con_form02 ul li:nth-child(2n + 1) {padding-right:4vw;}
 
 
-/* .submit02_txt {margin:10vw 0; margin-top:20vw; font-size:6.5vw; padding-top:12.5vw; background-size:auto 7vw;} */
-.submit02_txt {margin:5vw 0; font-size:6.5vw; padding-top:12.5vw; background-size:auto 7vw;}
+.submit02_txt {margin:10vw 0; margin-top:20vw; font-size:6.5vw; padding-top:12.5vw; background-size:auto 7vw;}
 
 .sub_img > div {display:flex; align-items:center; position:relative; height:42vw;}
 .sub_img > div .num {position:absolute; right:6vw; top:6vw;}
@@ -342,5 +341,5 @@ html, body, .wrapper {height:auto;}
 .pop_con .list02 > li {font-size:3.6vw; padding-left:4vw; margin-bottom:1vw;}
 .pop_con .tit:not(:first-child) {margin-top:8vw;}
 
-.pop_con {padding-bottom:0;}
+.pop_con {padding-bottom:}
 }

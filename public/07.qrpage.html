@@ -1,126 +1,84 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0">
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <!-- 부트스트랩 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
-  <link href="css/master.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link href="css/master.css" rel="stylesheet" type="text/css" />
 
-  <!-- font -->
-  <link rel="stylesheet" href="css/fonts/fontAwesome/font-awesome.min.css">
-
-  <!-- qrInfo의 css -->
-  <link href="./css/carousel.css" rel="stylesheet">
-  <title>국산김치 자율표시 등록시스템</title>
-
-  <!-- script -->
-  <script type="text/javascript">
-    temp = location.href.split("?");
-		data = temp[1].split("/");
-		name = decodeURI(data[0]);
-		made = decodeURI(data[1]);
-		madeby = decodeURI(data[2]);
-		address = decodeURI(data[3]);
-
-    window.onload = function(){
-      console.log(address)
-      document.getElementById("name").value = name;
-      document.getElementById("made").value = made;
-    }
-  </script>
+    <link rel="stylesheet" href="css/fonts/fontAwesome/font-awesome.min.css">
+    <script type="text/javascript">
+        temp = location.href.split("?");
+            data = temp[1].split("/");
+            name = decodeURI(data[0]);
+            made = decodeURI(data[1]);
+            madeby = decodeURI(data[2]);
+            address = decodeURI(data[3]);
+    
+        window.onload = function(){
+          document.getElementById("name").value = name;
+          document.getElementById("madeby").value = madeby;
+        }
+      </script>
 </head>
 
-<body>
-  <div class="navbar-wrapper" style="position:fixed !important;">
-    <div class="container">
-
-      <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-              aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Information</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#infoLocation">상세정보</a></li>
-              <li><a href="#mapLocation">오시는길</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </div>
-  </div>
-
-  <!-- 
-  ==================================================
-                        상세설명 
-  ================================================== -->
-  <a id="infoLocation"></a>
-  <div class="container marketing">
-
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="row">
-        <div class="col-lg-4 infoImg">
-
-          <img src="/images/qrInfo/korea.jpg" alt="Generic placeholder image">
-        </div>
-        <div class="col-lg-8 qrInfoDesc">
-          <h2><i class="fa fa-home text-muted" aria-hidden="true"></i> <strong>음식점명</strong></h2>
-          <input class="form-control shopDesc" id="name"/>
-          <h2><i class="fa fa-building-o text-muted" aria-hidden="true" style="margin-top:15px;"></i><strong>김치 제조업체명</strong></h2>
-          <input class="form-control shopDesc" id="made"/>
+<div class="wrapper">
+    <div class="sub_wrap">
+        <div class="sub_img">
+            <div>
+                <h2>국산김치 자율표시 등록시스템</h2>
+            </div>
         </div>
 
-      </div>
+        <div class="sub_con" style="display:block !important">
+            <div class="con scon02" style="margin-top:30px; margin: 0 auto;">
+                <div class="con_form02" style="text-align: center; padding-bottom: 20px;">
+                    <img src="/images/qrInfo/logo.png" alt="Generic placeholder image"
+                        style="width:250px; height:250px; margin-bottom: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="margin-bottom: 10px;"><i class="fa fa-home text-muted" aria-hidden="true"></i>
+                            <strong>음식점명</strong></h2>
+                        <input class="form-control shopDesc" id="name" readonly style="width:300px; margin:0 auto;" />
+                    </div>
+                    <h2 style="margin-bottom: 10px;"><i class="fa fa-building-o text-muted" aria-hidden="true"></i>
+                        <strong>김치 제조업체명</strong></h2>
+                    <input class="form-control shopDesc" id="madeby" style="width:300px; margin:0 auto;" readonly />
+                </div>
+            </div>
 
+            <!-- 지도보기 -->
+            <hr class="featurette-divider">
+
+            <div class="row" style="margin:0;">
+                <a id="mapLocation"></a>
+                <h2 style="text-align: center;"><i class="fa fa-map-marker text-muted" aria-hidden="true"></i> 오시는 길</h2>
+                <div style="width: 100%;height: 50vh; background: skyblue; margin:0 auto;">여기가 지도입니다
+                    API Key를 발급받아서 넣어야할 것 같습니다. 파이팅입니다!!</div>
+            </div>
+
+            <!-- Footer Page -->
+            <footer class="main_footer sub_footer">
+                <ul class="f_menu">
+                    <li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
+                    <li><a href="06.membership.html" target="_blank">회원약관</a></li>
+                </ul>
+                <ul class="f_add">
+                    <li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
+                    <li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672 </li>
+                    <li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
+                </ul>
+            </footer>
+            <!-- End of Footer -->
+        </div>
     </div>
+</div>
+</BODY>
 
-    <!-- 지도보기 -->
-    <hr class="featurette-divider">
-
-    <div class="row" style="margin:0;">
-      <a id="mapLocation"></a>
-      <h2><i class="fa fa-map-marker text-muted" aria-hidden="true"></i> 오시는 길</h2>
-      <div style="width: 100%;height: 100vh; background: skyblue;">여기가 지도입니다
-        API Key를 발급받아서 넣어야할 것 같습니다. 파이팅입니다!!</div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- FOOTER -->
-    <footer class="main_footer" style="position:relative; margin-top:20px;">
-      <ul class="f_menu">
-        <li><a href="https://futuresense.dev/" target="_blank">회사소개</a></li>
-        <li><a href="06.membership.html" target="_blank">회원약관</a></li>
-      </ul>
-      <ul class="f_add">
-        <li>서울특별시 구로구 디지털로 33번길 12 201-1호 퓨처센스</li>
-        <li>사업자등록번호 : 857-87-01691 | TEL : 02-868-9672</li>
-        <li>Copyright ⓒ FutureSense consortium 2021. All Rights Reserved.</li>
-      </ul>
-    </footer>
-
-  </div><!-- /.container -->
-
-
-</body>
 </html>

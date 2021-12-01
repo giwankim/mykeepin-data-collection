@@ -6,6 +6,7 @@
 <meta name="format-detection" content="telephone=no" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
 <title>국산김치 자율표시 등록시스템</title>
 
@@ -53,8 +54,13 @@
  };
 
 	function button_click() {
-		var url = "/05.Submit02.html?" + name + "/" + made + "/" + madeby + "/" + address + extraAddress
-		fetch("http://13.124.69.5:3000/manufacturers", {
+		var check = document.getElementById("check").checked;
+    if(!check){
+      alert("약관에 동의해 주세요")
+      return;
+    }
+
+		fetch("https://api.woorikimchi.com/manufacturers", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -63,10 +69,10 @@
 		})
 			.then(response => response.json())
 			.then(_data => {
-				window.location.href = url;
+				window.location.href = "/05.Submit02_manufacture.html"
 			})
 			.catch(err => {
-				res.status(400).send({error: true, message: err});
+				window.location.href = '/notfound.html'
 			})
 	}
 
@@ -77,9 +83,7 @@
 <div class="wrapper">
 	<div class="sub_wrap">
 		<div class="sub_img">
-			<img src="/asset/mobile.png" alt="main" width="100%" height="50%"></img>
 			<div>
-				<div class="num"><strong>2</strong><span>2</span></div>
 				<h2>입력하신 내용을 <br/>확인해주세요.</h2>
 			</div>
 		</div>
@@ -89,7 +93,7 @@
 					<ul>
 						<li>
 							<h3>전화번호</h3>
-							<p>dd</p>
+							<p></p>
 						</li>
 						<li>
 							<h3>업체명</h3>
@@ -116,7 +120,7 @@
 					</div>
 
 					<a href="javascript:void(0);" class="con_form_bt" onclick="button_click();">제출</a>
-					<a href="javascript:window.history.back();" class="con_bt_back">뒤로가기</a>
+					<a href="javascript:window.history.back();" class="con_form_bt" style="background-color:rgba(92, 89, 92, 0.8) !important; margin-top:20px !important;">뒤로가기</a>
 
 				</div>
 			</div>
